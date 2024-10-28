@@ -52,7 +52,8 @@ class Trainer():
     # get the data
     parserModule = imp.load_source("parserModule",
                                    booger.TRAIN_PATH + '/tasks/semantic/dataset/' +
-                                   self.DATA["name"] + '/parser.py')
+                                   self.DATA["name"] + '/parser.py')       
+                                   # DATA是读取yaml得到name的，default->kitti
     self.parser = parserModule.Parser(root=self.datadir,
                                       train_sequences=self.DATA["split"]["train"],
                                       valid_sequences=self.DATA["split"]["valid"],
@@ -71,7 +72,7 @@ class Trainer():
     # weights for loss (and bias)
     # weights for loss (and bias)
     epsilon_w = self.ARCH["train"]["epsilon_w"]
-    content = torch.zeros(self.parser.get_n_classes(), dtype=torch.float)
+    content = torch.zeros(self.parser.get_n_classes(), dtype=torch.float)   # 创建张量
     for cl, freq in DATA["content"].items():
       x_cl = self.parser.to_xentropy(cl)  # map actual class to xentropy class
       content[x_cl] += freq
