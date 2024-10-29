@@ -29,7 +29,11 @@ class SemanticKitti(Dataset):
                max_points=150000,   # max number of points present in dataset
                gt=True, training=True):            # send ground truth?
     # save deats
-    self.root = os.path.join(root, "sequences")
+    print("-------------->")
+    print("root->path: ", root)
+    #self.root = os.path.join(root, "kitti")
+    self.root = os.path.join(root, "kitti/sequences")
+    print("root->path: ", self.root)
     self.sequences = sequences
     self.labels = labels
     self.color_map = color_map
@@ -86,6 +90,7 @@ class SemanticKitti(Dataset):
       # get paths for each
       scan_path = os.path.join(self.root, seq, "velodyne")
       label_path = os.path.join(self.root, seq, "labels")
+      print("scanf_path:", scan_path)
 
       # get files
       scan_files = [os.path.join(dp, f) for dp, dn, fn in os.walk(
@@ -218,7 +223,7 @@ class SemanticKitti(Dataset):
 
 
     # set to zero points which where non valid at the beginning
-    proj_chan_group_points_relative[tiled_projmask_chan_group_points] = 0.
+    proj_chan_group_points_relative[tiled_projmask_chan_group_points] = False   #default 0
 
     # NOW proj_chan_group_points_relative HAS Xr, Yr, Zr, Rr, Dr relative to the mean point
     proj_norm_chan_group_points = f.unfold(proj.unsqueeze(1), kernel_size=windows_size, stride=windows_size)
@@ -319,7 +324,7 @@ class Parser():
                                                    batch_size=self.batch_size,
                                                    shuffle=self.shuffle_train,
                                                    num_workers=self.workers,
-                                                   pin_memory=True,
+                                                   pin_memory=False,
                                                    drop_last=True)
     assert len(self.trainloader) > 0
     self.trainiter = iter(self.trainloader)
@@ -338,7 +343,7 @@ class Parser():
                                                    batch_size=self.batch_size,
                                                    shuffle=False,
                                                    num_workers=self.workers,
-                                                   pin_memory=True,
+                                                   pin_memory=False,
                                                    drop_last=True)
     assert len(self.validloader) > 0
     self.validiter = iter(self.validloader)
@@ -358,7 +363,7 @@ class Parser():
                                                     batch_size=self.batch_size,
                                                     shuffle=False,
                                                     num_workers=self.workers,
-                                                    pin_memory=True,
+                                                    pin_memory=False,
                                                     drop_last=True)
       assert len(self.testloader) > 0
       self.testiter = iter(self.testloader)

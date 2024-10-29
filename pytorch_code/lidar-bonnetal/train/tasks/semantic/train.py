@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 # This file is covered by the LICENSE file in the root of this project.
+import os
+os.environ['CUDA_VISIBLE_DEVICES']='0'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:98"
 import sys
 import argparse
 import subprocess
 import datetime
 import yaml
 from shutil import copyfile
-import os
+# import os
 import shutil
 import __init__ as booger
 

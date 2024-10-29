@@ -6,6 +6,11 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
 import torchvision.transforms as transforms
+
+import gc
+gc.collect()
+torch.cuda.empty_cache()
+
 import imp
 import yaml
 import time
@@ -71,6 +76,7 @@ class Trainer():
 
     # weights for loss (and bias)
     # weights for loss (and bias)
+    print("***************   batch_size  ****************", self.ARCH["train"]["batch_size"])
     epsilon_w = self.ARCH["train"]["epsilon_w"]
     content = torch.zeros(self.parser.get_n_classes(), dtype=torch.float)   # 创建张量
     for cl, freq in DATA["content"].items():
@@ -111,6 +117,10 @@ class Trainer():
       self.model_single = self.model.module  # single model to get weight names
       self.multi_gpu = True
       self.n_gpus = torch.cuda.device_count()
+
+    # print("**************************************")
+    # print(torch.cuda.memory_allocated())
+    # print(torch.cuda.memory_reserved())
 
     # loss
     if "loss" in self.ARCH["train"].keys() and self.ARCH["train"]["loss"] == "xentropy":
