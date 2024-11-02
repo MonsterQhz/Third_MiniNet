@@ -1,0 +1,1 @@
+D:\DiskE\ASL_MININet\Third_MiniNet\pytorch_code\lidar-bonnetal\train\tasks\semantic>python ./train.py -d ../../tasks/semantic/dataset -ac ../../tasks/semantic/config/arch/3dmininet-tiny.yaml -l ../../tasks/semantic/log
