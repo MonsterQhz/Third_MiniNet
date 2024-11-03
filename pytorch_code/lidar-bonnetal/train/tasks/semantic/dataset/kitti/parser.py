@@ -223,7 +223,7 @@ class SemanticKitti(Dataset):
 
 
     # set to zero points which where non valid at the beginning
-    proj_chan_group_points_relative[tiled_projmask_chan_group_points] = False   #default 0
+    proj_chan_group_points_relative[tiled_projmask_chan_group_points] = 0.   #default 0
 
     # NOW proj_chan_group_points_relative HAS Xr, Yr, Zr, Rr, Dr relative to the mean point
     proj_norm_chan_group_points = f.unfold(proj.unsqueeze(1), kernel_size=windows_size, stride=windows_size)

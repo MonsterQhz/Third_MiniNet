@@ -95,6 +95,7 @@ if __name__ == '__main__':
   # does sequence folder exist?
   scan_paths = os.path.join(FLAGS.dataset, "sequences",
                             FLAGS.sequence, "velodyne")
+  print("scan path: ", scan_paths)
   if os.path.isdir(scan_paths):
     print("Sequence folder exists! Using sequence from %s" % scan_paths)
   else:
