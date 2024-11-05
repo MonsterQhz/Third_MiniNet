@@ -73,7 +73,7 @@ color_map: # bgr
 content: # as a ratio with the total number of points
   0: 0.018889854628292943
   1: 0.0002937197336781505
-  10: 0.440818519255974316    # default 0.0440
+  10: 0.040818519255974316
   11: 0.00016609538710764618
   13: 2.7879693665067774e-05
   15: 0.00039838616015114444
@@ -83,15 +83,15 @@ content: # as a ratio with the total number of points
   30: 0.00017698551338515307
   31: 1.1065903904919655e-08
   32: 5.532951952459828e-09
-  40: 0.0987493871255525     # default 0.1987
+  40: 0.1987493871255525
   44: 0.014717169549888214
-  48: 0.04392298360372       # default 0.1439
+  48: 0.14392298360372
   49: 0.0039048553037472045
   50: 0.1326861944777486
   51: 0.0723592229456223
   52: 0.002395131480328884
   60: 4.7084144280367186e-05
-  70: 0.06681502148037506    # default 0.2668
+  70: 0.26681502148037506
   71: 0.006035012012626033
   72: 0.07814222006271769
   80: 0.002855498193863172
@@ -146,7 +146,7 @@ learning_map_inv: # inverse of previous map
   0: 0      # "unlabeled", and others ignored
   1: 10     # "car"
 learning_ignore: # Ignore classes
-  0: False      # "unlabeled", and others ignored
+  0: True      # "unlabeled", and others ignored
   1: False     # "car"
 # split: # sequence numbers
 #   train:
@@ -176,18 +176,13 @@ learning_ignore: # Ignore classes
 #     - 21
 split: # sequence numbers
   train:
-    - 0
     - 1
-    - 2
     - 3
     - 4
     - 5
-    - 6
-    - 7
-    - 9
-
   valid:
     - 8      # default 8
   test:
     - 11
     - 12
+
